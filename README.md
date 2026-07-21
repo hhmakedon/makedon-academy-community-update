@@ -2,6 +2,10 @@
 
 A responsive, community-facing newsletter site for Havee Makedon’s introduction as principal of Makedon Academy. The site communicates a mission, vision, and first continuous-improvement focus: belonging and student wellbeing.
 
+- Live newsletter: [hhmakedon.github.io/makedon-academy-community-update](https://hhmakedon.github.io/makedon-academy-community-update/)
+- Private moderation desk: [open `#/admin`](https://hhmakedon.github.io/makedon-academy-community-update/#/admin)
+- Source repository: [github.com/hhmakedon/makedon-academy-community-update](https://github.com/hhmakedon/makedon-academy-community-update)
+
 ## What is included
 
 - Accessible React + TypeScript newsletter experience
