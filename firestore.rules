@@ -1,0 +1,87 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isModerator() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email == 'haveemakedon1@gmail.com';
+    }
+
+    match /newsletter_subscribers/{document} {
+      allow create: if request.resource.data.keys().hasOnly([
+          'firstName', 'email', 'role', 'createdAt', 'source'
+        ])
+        && request.resource.data.email is string
+        && request.resource.data.email.size() >= 5
+        && request.resource.data.email.size() <= 160
+        && request.resource.data.firstName is string
+        && request.resource.data.firstName.size() <= 60
+        && request.resource.data.role in ['Family member', 'Staff member', 'Community member']
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.source == 'community-update';
+      allow read, update, delete: if false;
+    }
+
+    match /family_feedback/{document} {
+      allow create: if request.resource.data.keys().hasOnly([
+          'name', 'email', 'topic', 'message', 'createdAt', 'status', 'source'
+        ])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.email is string
+        && request.resource.data.email.size() <= 160
+        && request.resource.data.topic in [
+          'A question',
+          'Something working well',
+          'An idea for improvement',
+          'A concern'
+        ]
+        && request.resource.data.message is string
+        && request.resource.data.message.size() >= 10
+        && request.resource.data.message.size() <= 1500
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.status == 'new'
+        && request.resource.data.source == 'community-update';
+      allow read, update, delete: if false;
+    }
+
+    match /update_comments/{document} {
+      allow create: if request.resource.data.keys().hasOnly([
+          'updateId', 'displayName', 'role', 'message', 'approved',
+          'status', 'createdAt', 'source'
+        ])
+        && request.resource.data.updateId is string
+        && request.resource.data.updateId.size() >= 3
+        && request.resource.data.updateId.size() <= 80
+        && request.resource.data.updateId.matches('^[a-z0-9-]+$')
+        && request.resource.data.displayName is string
+        && request.resource.data.displayName.size() >= 2
+        && request.resource.data.displayName.size() <= 60
+        && request.resource.data.role in [
+          'Family member', 'Staff member', 'Student', 'Community member'
+        ]
+        && request.resource.data.message is string
+        && request.resource.data.message.size() >= 20
+        && request.resource.data.message.size() <= 800
+        && request.resource.data.approved == false
+        && request.resource.data.status == 'pending'
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.source == 'community-update';
+
+      allow read: if (resource.data.approved == true
+        && resource.data.status == 'approved') || isModerator();
+
+      allow update: if isModerator()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'approved', 'status', 'moderatedAt', 'moderatedBy'
+        ])
+        && request.resource.data.status in ['approved', 'rejected']
+        && request.resource.data.approved == (request.resource.data.status == 'approved')
+        && request.resource.data.moderatedAt == request.time
+        && request.resource.data.moderatedBy == request.auth.token.email;
+
+      allow delete: if false;
+    }
+  }
+}
