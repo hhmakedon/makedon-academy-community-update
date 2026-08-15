@@ -9,6 +9,7 @@ import {
 
 type CommentsSectionProps = {
   updateId: string
+  sectionId?: string
 }
 
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error'
@@ -22,11 +23,13 @@ function formatCommentDate(date: Date | null) {
   }).format(date)
 }
 
-export default function CommentsSection({ updateId }: CommentsSectionProps) {
+export default function CommentsSection({ updateId, sectionId }: CommentsSectionProps) {
   const [comments, setComments] = useState<PublicComment[]>([])
   const [loading, setLoading] = useState(isFirebaseConfigured)
   const [loadError, setLoadError] = useState(false)
   const [status, setStatus] = useState<SubmitState>('idle')
+  const idPrefix = `comments-${updateId}`
+  const resolvedSectionId = sectionId ?? idPrefix
 
   useEffect(() => {
     const unsubscribe = subscribeToApprovedComments(
@@ -69,12 +72,17 @@ export default function CommentsSection({ updateId }: CommentsSectionProps) {
   }
 
   return (
-    <section className="comments-section" id="comments" aria-labelledby="comments-title">
+    <section
+      className="comments-section"
+      id={resolvedSectionId}
+      aria-labelledby={`${idPrefix}-title`}
+      data-update-id={updateId}
+    >
       <div className="section-shell">
         <div className="comments-heading">
           <div>
             <p className="section-kicker">Community conversation</p>
-            <h2 id="comments-title">Continue the conversation.</h2>
+            <h2 id={`${idPrefix}-title`}>Continue the conversation.</h2>
           </div>
           <div className="moderation-badge">
             <ShieldCheck size={18} />
@@ -117,20 +125,20 @@ export default function CommentsSection({ updateId }: CommentsSectionProps) {
             ))}
           </div>
 
-          <form className="comment-form" onSubmit={handleSubmit}>
+          <form className="comment-form" onSubmit={handleSubmit} data-update-id={updateId}>
             <div className="comment-form-intro">
               <p className="section-kicker">Add your voice</p>
               <h3>Share a response</h3>
               <p>What resonated with you? What should we keep in mind as this work continues?</p>
             </div>
             <div className="field">
-              <label htmlFor="commentName">Display name <span aria-hidden="true">*</span></label>
-              <input id="commentName" name="commentName" autoComplete="name" placeholder="First name and last initial" minLength={2} maxLength={60} required />
+              <label htmlFor={`${idPrefix}-name`}>Display name <span aria-hidden="true">*</span></label>
+              <input id={`${idPrefix}-name`} name="commentName" autoComplete="name" placeholder="First name and last initial" minLength={2} maxLength={60} required />
               <small>Use a name you are comfortable displaying publicly after approval.</small>
             </div>
             <div className="field">
-              <label htmlFor="commentRole">I am a…</label>
-              <select id="commentRole" name="commentRole" defaultValue="Family member">
+              <label htmlFor={`${idPrefix}-role`}>I am a…</label>
+              <select id={`${idPrefix}-role`} name="commentRole" defaultValue="Family member">
                 <option>Family member</option>
                 <option>Staff member</option>
                 <option>Student</option>
@@ -138,13 +146,13 @@ export default function CommentsSection({ updateId }: CommentsSectionProps) {
               </select>
             </div>
             <div className="field">
-              <label htmlFor="commentMessage">Comment <span aria-hidden="true">*</span></label>
-              <textarea id="commentMessage" name="commentMessage" rows={5} placeholder="Write a thoughtful, community-centered response…" minLength={20} maxLength={800} required />
+              <label htmlFor={`${idPrefix}-message`}>Comment <span aria-hidden="true">*</span></label>
+              <textarea id={`${idPrefix}-message`} name="commentMessage" rows={5} placeholder="Write a thoughtful, community-centered response…" minLength={20} maxLength={800} required />
               <small>Do not include student names, private records, or urgent safety concerns.</small>
             </div>
             <div className="honeypot" aria-hidden="true">
-              <label htmlFor="commentWebsite">Website</label>
-              <input id="commentWebsite" name="commentWebsite" tabIndex={-1} autoComplete="off" />
+              <label htmlFor={`${idPrefix}-website`}>Website</label>
+              <input id={`${idPrefix}-website`} name="commentWebsite" tabIndex={-1} autoComplete="off" />
             </div>
             <button className="button button-coral comment-submit" type="submit" disabled={status === 'submitting'}>
               {status === 'submitting' ? 'Submitting…' : 'Submit for review'}

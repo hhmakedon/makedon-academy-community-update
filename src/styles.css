@@ -298,26 +298,35 @@ footer a:hover {
   place-items: center;
 }
 
-.focus-card {
+.focus-notebook {
   position: relative;
   z-index: 2;
   display: flex;
-  width: 310px;
-  min-height: 380px;
+  width: 340px;
+  min-height: 355px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 155px 155px 28px 28px;
-  background: var(--cream);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.24);
+  padding: 54px 42px 44px 58px;
+  border: 1px solid rgba(13, 41, 37, 0.13);
+  border-radius: 18px 18px 25px 18px;
+  background:
+    linear-gradient(to right, transparent 0 38px, rgba(237, 118, 95, 0.48) 38px 40px, transparent 40px),
+    repeating-linear-gradient(to bottom, transparent 0 41px, rgba(35, 96, 85, 0.08) 41px 42px),
+    var(--cream);
+  box-shadow:
+    14px 14px 0 var(--green-100),
+    0 30px 80px rgba(0, 0, 0, 0.24);
   color: var(--green-900);
   text-align: center;
+  transform: rotate(-2deg);
 }
 
 .focus-label {
-  position: absolute;
-  top: 38px;
+  margin-bottom: 25px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: var(--green-50);
   color: var(--coral-dark);
   font-size: 10px;
   font-weight: 700;
@@ -325,15 +334,22 @@ footer a:hover {
   text-transform: uppercase;
 }
 
-.focus-card strong {
-  margin-top: 20px;
+.focus-notebook > svg {
+  box-sizing: content-box;
+  padding: 11px;
+  border-radius: 50%;
+  background: var(--yellow);
+}
+
+.focus-notebook strong {
+  margin-top: 18px;
   font-family: var(--serif);
   font-size: 28px;
   font-weight: 400;
   line-height: 1.1;
 }
 
-.focus-card small {
+.focus-notebook small {
   color: var(--muted);
   font-size: 12px;
   line-height: 1.55;
@@ -394,6 +410,134 @@ footer a:hover {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.17em;
+}
+
+.goals-update-section {
+  padding: 120px 0;
+  background: var(--cream);
+}
+
+.goals-update-shell {
+  max-width: 980px;
+}
+
+.goals-update-article {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.62fr) minmax(0, 1.38fr);
+  gap: 74px;
+  padding: 64px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  box-shadow: 0 24px 70px rgba(18, 58, 52, 0.08);
+}
+
+.goals-update-header {
+  position: sticky;
+  top: 112px;
+  align-self: start;
+}
+
+.goals-update-header .section-kicker {
+  margin-bottom: 14px;
+}
+
+.goals-update-header time {
+  display: block;
+  margin-bottom: 24px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.goals-update-header h2 {
+  margin: 0;
+  color: var(--green-900);
+  font-size: clamp(2.6rem, 4.4vw, 4.25rem);
+  line-height: 1.02;
+}
+
+.goals-update-body > p {
+  margin-bottom: 24px;
+  color: #374541;
+  font-family: Georgia, serif;
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+.goals-update-body > p strong,
+.goals-timeline strong {
+  color: var(--green-900);
+}
+
+.goals-timeline-intro {
+  margin-bottom: 14px !important;
+  font-weight: 700;
+}
+
+.goals-timeline {
+  margin: 0 0 30px;
+  padding: 0;
+  list-style: none;
+  counter-reset: update-date;
+}
+
+.goals-timeline li {
+  position: relative;
+  min-width: 0;
+  padding: 18px 18px 18px 58px;
+  border-bottom: 1px solid var(--line);
+  counter-increment: update-date;
+}
+
+.goals-timeline li:first-child {
+  border-top: 1px solid var(--line);
+}
+
+.goals-timeline li::before {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--green-900);
+  color: var(--yellow);
+  content: counter(update-date, decimal-leading-zero);
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.goals-timeline p {
+  margin: 0;
+  color: #43514d;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.accessibility-note {
+  margin-top: 38px;
+  padding: 18px 20px;
+  border-left: 3px solid var(--green-100);
+  background: var(--green-50);
+}
+
+.accessibility-note strong {
+  color: var(--green-700);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.accessibility-note p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
 }
 
 .letter-section {
@@ -1718,9 +1862,10 @@ footer a {
     font-size: clamp(3.2rem, 7vw, 5rem);
   }
 
-  .focus-card {
-    width: 260px;
-    min-height: 340px;
+  .focus-notebook {
+    width: 290px;
+    min-height: 330px;
+    padding-inline: 52px 36px;
   }
 
   .orbit-one { width: 390px; height: 390px; }
@@ -1795,6 +1940,7 @@ footer a {
   }
 
   .letter-section,
+  .goals-update-section,
   .focus-section,
   .approach-section,
   .questions-section,
@@ -1804,6 +1950,7 @@ footer a {
   }
 
   .letter-grid,
+  .goals-update-article,
   .split-heading,
   .approach-grid,
   .questions-grid,
@@ -1811,6 +1958,14 @@ footer a {
   .comments-layout {
     grid-template-columns: 1fr;
     gap: 55px;
+  }
+
+  .goals-update-article {
+    padding: 48px;
+  }
+
+  .goals-update-header {
+    position: static;
   }
 
   .letter-grid {
@@ -1916,6 +2071,23 @@ footer a {
     margin-inline: 0;
     padding: 24px;
     font-size: 21px;
+  }
+
+  .goals-update-article {
+    gap: 36px;
+    padding: 32px 20px;
+  }
+
+  .goals-update-header h2 {
+    font-size: 2.8rem;
+  }
+
+  .goals-update-body > p {
+    font-size: 16px;
+  }
+
+  .goals-timeline li {
+    padding-right: 4px;
   }
 
   .split-heading h2,
