@@ -336,7 +336,7 @@ function App() {
             </div>
           </div>
           <div className="hero-band" aria-hidden="true">
-            <span>MAKEDON ACADEMY</span><span>•</span><span>COMMUNITY UPDATE · ISSUE 01</span><span>•</span><span>2026–27 SCHOOL YEAR</span>
+            <span>MAKEDON ACADEMY</span><span>•</span><span>COMMUNITY UPDATE · ISSUE 02</span><span>•</span><span>2026–27 SCHOOL YEAR</span>
           </div>
         </section>
 
@@ -346,13 +346,13 @@ function App() {
           <div className="section-shell letter-grid">
             <aside className="letter-aside">
               <p className="section-kicker">A note from your principal</p>
-              <div className="portrait-placeholder" aria-hidden="true">
-                <span>HM</span>
-              </div>
-              <div className="principal-card">
-                <strong>Havee Makedon</strong>
-                <span>Principal</span>
-                <span>Makedon Academy</span>
+              <div className="principal-byline">
+                <span className="principal-monogram" aria-hidden="true">HM</span>
+                <div className="principal-card">
+                  <strong>Havee Makedon</strong>
+                  <span>Principal</span>
+                  <span>Makedon Academy</span>
+                </div>
               </div>
               <div className="aside-quote">
                 <Quote size={21} />
