@@ -323,7 +323,7 @@ function App() {
             <div className="hero-art" aria-label="This year's focus is belonging and student wellbeing">
               <div className="orbit orbit-one" />
               <div className="orbit orbit-two" />
-              <div className="focus-card">
+              <div className="focus-notebook">
                 <span className="focus-label">2026–27 focus</span>
                 <HeartHandshake size={42} strokeWidth={1.5} />
                 <strong>Belonging &amp;<br />student wellbeing</strong>

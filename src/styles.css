@@ -298,26 +298,35 @@ footer a:hover {
   place-items: center;
 }
 
-.focus-card {
+.focus-notebook {
   position: relative;
   z-index: 2;
   display: flex;
-  width: 310px;
-  min-height: 380px;
+  width: 340px;
+  min-height: 355px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 155px 155px 28px 28px;
-  background: var(--cream);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.24);
+  padding: 54px 42px 44px 58px;
+  border: 1px solid rgba(13, 41, 37, 0.13);
+  border-radius: 18px 18px 25px 18px;
+  background:
+    linear-gradient(to right, transparent 0 38px, rgba(237, 118, 95, 0.48) 38px 40px, transparent 40px),
+    repeating-linear-gradient(to bottom, transparent 0 41px, rgba(35, 96, 85, 0.08) 41px 42px),
+    var(--cream);
+  box-shadow:
+    14px 14px 0 var(--green-100),
+    0 30px 80px rgba(0, 0, 0, 0.24);
   color: var(--green-900);
   text-align: center;
+  transform: rotate(-2deg);
 }
 
 .focus-label {
-  position: absolute;
-  top: 38px;
+  margin-bottom: 25px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: var(--green-50);
   color: var(--coral-dark);
   font-size: 10px;
   font-weight: 700;
@@ -325,15 +334,22 @@ footer a:hover {
   text-transform: uppercase;
 }
 
-.focus-card strong {
-  margin-top: 20px;
+.focus-notebook > svg {
+  box-sizing: content-box;
+  padding: 11px;
+  border-radius: 50%;
+  background: var(--yellow);
+}
+
+.focus-notebook strong {
+  margin-top: 18px;
   font-family: var(--serif);
   font-size: 28px;
   font-weight: 400;
   line-height: 1.1;
 }
 
-.focus-card small {
+.focus-notebook small {
   color: var(--muted);
   font-size: 12px;
   line-height: 1.55;
@@ -1846,9 +1862,10 @@ footer a {
     font-size: clamp(3.2rem, 7vw, 5rem);
   }
 
-  .focus-card {
-    width: 260px;
-    min-height: 340px;
+  .focus-notebook {
+    width: 290px;
+    min-height: 330px;
+    padding-inline: 52px 36px;
   }
 
   .orbit-one { width: 390px; height: 390px; }
