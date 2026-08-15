@@ -346,17 +346,19 @@ function App() {
           <div className="section-shell letter-grid">
             <aside className="letter-aside">
               <p className="section-kicker">A note from your principal</p>
-              <div className="principal-byline">
-                <span className="principal-monogram" aria-hidden="true">HM</span>
-                <div className="principal-card">
-                  <strong>Havee Makedon</strong>
-                  <span>Principal</span>
-                  <span>Makedon Academy</span>
+              <div className="principal-note-card">
+                <div className="principal-byline">
+                  <span className="principal-monogram" aria-hidden="true">HM</span>
+                  <div className="principal-card">
+                    <strong>Havee Makedon</strong>
+                    <span>Principal</span>
+                    <span>Makedon Academy</span>
+                  </div>
                 </div>
-              </div>
-              <div className="aside-quote">
-                <Quote size={21} />
-                <p>Middle school is not a pause between childhood and high school. It is a powerful season of becoming.</p>
+                <div className="aside-quote">
+                  <Quote size={21} />
+                  <p>Middle school is not a pause between childhood and high school. It is a powerful season of becoming.</p>
+                </div>
               </div>
             </aside>
             <article className="letter-body">
