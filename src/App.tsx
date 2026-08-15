@@ -21,6 +21,30 @@ import AdminDashboard from './components/AdminDashboard'
 
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error'
 
+type NewsletterUpdate = {
+  updateId: string
+  date: string
+  dateLabel: string
+  title: string
+}
+
+const updates = [
+  {
+    updateId: 'continuous-improvement-goals-2026',
+    date: '2026-09-02',
+    dateLabel: 'September 2, 2026',
+    title: 'Our Focus for the Year: Building Belonging',
+  },
+  {
+    updateId: 'welcome-2026-27',
+    date: '2026-08',
+    dateLabel: 'August 2026',
+    title: 'Dear Makedon Academy Families,',
+  },
+] as const satisfies readonly NewsletterUpdate[]
+
+const [continuousImprovementUpdate, introductionUpdate] = updates
+
 const commitments = [
   {
     number: '01',
@@ -220,6 +244,56 @@ function FeedbackForm() {
   )
 }
 
+function ContinuousImprovementUpdate() {
+  const update = continuousImprovementUpdate
+
+  return (
+    <>
+      <section
+        className="goals-update-section"
+        id={update.updateId}
+        aria-labelledby={`${update.updateId}-title`}
+      >
+        <div className="section-shell goals-update-shell">
+          <article className="goals-update-article">
+            <header className="goals-update-header">
+              <p className="section-kicker">Community update</p>
+              <time dateTime={update.date}>{update.dateLabel}</time>
+              <h2 id={`${update.updateId}-title`}>{update.title}</h2>
+            </header>
+
+            <div className="goals-update-body">
+              <p>Earlier this year I introduced myself and shared that my first focus as principal would be belonging and student wellbeing. Now I want to tell you plainly what we are working toward this year, how we will know if it is working, and how you can be part of it.</p>
+
+              <p><strong>Our goal for the year.</strong> Makedon Academy is working to make sure every student feels they belong and has at least one adult at school they trust. Middle school is a stretch where feeling connected is not automatic, and when students feel known and safe, they are far more ready to learn.</p>
+
+              <p><strong>How we will measure it.</strong> We will listen to our students directly. Twice this year, students will complete a short belonging and climate survey, and we will pay attention to everyday signs like attendance and how connected students say they feel. We will also ask you, through a family survey, whether your child feels welcomed and known here. Our aim is to move the share of students who report a strong sense of belonging up meaningfully from where we start in the fall.</p>
+
+              <p className="goals-timeline-intro">Key dates so you can follow our progress:</p>
+              <ol className="goals-timeline">
+                <li><p><strong>Fall, September and October:</strong> we gather our starting point from students and families.</p></li>
+                <li><p><strong>Winter, January:</strong> we check in on early progress and adjust what we are doing.</p></li>
+                <li><p><strong>Spring, April and May:</strong> we survey again and share openly what changed and what is next.</p></li>
+              </ol>
+
+              <p><strong>How you can be part of it.</strong> You know your child better than anyone, and this work does not happen without you. Complete the short family survey when it comes home this fall. Come to one of our Coffee with the Principal mornings to share what belonging looks like for your family. Tell your child's teachers what helps your child feel comfortable and confident. And reach out any time, since strong two-way communication is the heart of this.</p>
+
+              <p>I will report back at each of the checkpoints above so you can see our progress, not just hear about our plans.</p>
+
+              <aside className="accessibility-note" aria-label="Accessibility">
+                <strong>Accessibility</strong>
+                <p>This update is also sent home as a printed letter, shared through our phone and text system, posted on our website, offered in families' home languages, and covered in person at fall events, so every family can access it.</p>
+              </aside>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <CommentsSection updateId={update.updateId} sectionId="comments" />
+    </>
+  )
+}
+
 function App() {
   const [adminMode, setAdminMode] = useState(window.location.hash === '#/admin')
 
@@ -265,6 +339,8 @@ function App() {
             <span>MAKEDON ACADEMY</span><span>•</span><span>COMMUNITY UPDATE · ISSUE 01</span><span>•</span><span>2026–27 SCHOOL YEAR</span>
           </div>
         </section>
+
+        <ContinuousImprovementUpdate />
 
         <section className="letter-section" id="welcome" aria-labelledby="welcome-title">
           <div className="section-shell letter-grid">
@@ -402,7 +478,7 @@ function App() {
           </div>
         </section>
 
-        <CommentsSection updateId="welcome-2026-27" />
+        <CommentsSection updateId={introductionUpdate.updateId} />
       </main>
 
       <footer>
