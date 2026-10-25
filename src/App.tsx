@@ -18,6 +18,8 @@ import {
 import { createFeedback, createSubscription, isFirebaseConfigured } from './lib/firebase'
 import CommentsSection from './components/CommentsSection'
 import AdminDashboard from './components/AdminDashboard'
+import { NewsletterArchive, NewsletterIssuePage } from './components/NewsletterPages'
+import { getNewsletterIssue } from './data/newsletters'
 
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error'
 
@@ -73,14 +75,19 @@ const cycle = [
   { step: 'Share', detail: 'Report what we learn and what changes.' },
 ]
 
-function Header() {
+type HeaderProps = {
+  isHome?: boolean
+}
+
+function Header({ isHome = false }: HeaderProps) {
   const [open, setOpen] = useState(false)
   const closeMenu = () => setOpen(false)
+  const homeHref = (anchor: string) => isHome ? '#' + anchor : './#' + anchor
 
   return (
     <header className="site-header">
       <div className="header-inner">
-        <a className="brand" href="#top" aria-label="Makedon Academy Community Update home">
+        <a className="brand" href={isHome ? '#top' : './'} aria-label="Makedon Academy Community Update home">
           <span className="brand-mark" aria-hidden="true">MA</span>
           <span>
             <strong>Makedon Academy</strong>
@@ -97,14 +104,29 @@ function Header() {
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
         <nav className={open ? 'nav-links is-open' : 'nav-links'} aria-label="Primary navigation">
-          <a href="#welcome" onClick={closeMenu}>Welcome</a>
-          <a href="#focus" onClick={closeMenu}>Our focus</a>
-          <a href="#approach" onClick={closeMenu}>Our approach</a>
-          <a href="#comments" onClick={closeMenu}>Comments</a>
-          <a className="nav-cta" href="#connect" onClick={closeMenu}>Connect with us <ArrowRight size={15} /></a>
+          <a href={homeHref('welcome')} onClick={closeMenu}>Welcome</a>
+          <a href="./?view=updates" onClick={closeMenu}>Weekly updates</a>
+          <a href={homeHref('focus')} onClick={closeMenu}>Our focus</a>
+          <a href={homeHref('approach')} onClick={closeMenu}>Our approach</a>
+          <a className="nav-cta" href={homeHref('connect')} onClick={closeMenu}>Connect with us <ArrowRight size={15} /></a>
         </nav>
       </div>
     </header>
+  )
+}
+
+function SiteFooter() {
+  return (
+    <footer>
+      <div className="section-shell footer-inner">
+        <div className="brand footer-brand">
+          <span className="brand-mark" aria-hidden="true">MA</span>
+          <span><strong>Makedon Academy</strong><small>Community School</small></span>
+        </div>
+        <p>Belonging. Growth. A strong start—together.</p>
+        <a href="#top">Back to top <ArrowDown className="up-arrow" size={15} /></a>
+      </div>
+    </footer>
   )
 }
 
@@ -296,6 +318,9 @@ function ContinuousImprovementUpdate() {
 
 function App() {
   const [adminMode, setAdminMode] = useState(window.location.hash === '#/admin')
+  const searchParams = new URLSearchParams(window.location.search)
+  const requestedIssue = getNewsletterIssue(searchParams.get('update'))
+  const archiveMode = searchParams.get('view') === 'updates' || Boolean(searchParams.get('update') && !requestedIssue)
 
   useEffect(() => {
     const handleHashChange = () => setAdminMode(window.location.hash === '#/admin')
@@ -303,11 +328,43 @@ function App() {
     return () => window.removeEventListener('hashchange', handleHashChange)
   }, [])
 
+  useEffect(() => {
+    if (adminMode) {
+      document.title = 'Comment moderation | Makedon Academy'
+    } else if (requestedIssue) {
+      document.title = requestedIssue.title + ' | Makedon Academy Weekly'
+    } else if (archiveMode) {
+      document.title = 'Weekly updates | Makedon Academy'
+    } else {
+      document.title = 'Makedon Academy Community Update'
+    }
+  }, [adminMode, archiveMode, requestedIssue])
+
   if (adminMode) return <AdminDashboard />
+
+  if (requestedIssue) {
+    return (
+      <div id="top">
+        <Header />
+        <NewsletterIssuePage issue={requestedIssue} />
+        <SiteFooter />
+      </div>
+    )
+  }
+
+  if (archiveMode) {
+    return (
+      <div id="top">
+        <Header />
+        <NewsletterArchive />
+        <SiteFooter />
+      </div>
+    )
+  }
 
   return (
     <div id="top">
-      <Header />
+      <Header isHome />
       <main id="main-content">
         <section className="hero" aria-labelledby="hero-title">
           <div className="hero-inner">
@@ -483,16 +540,7 @@ function App() {
         <CommentsSection updateId={introductionUpdate.updateId} />
       </main>
 
-      <footer>
-        <div className="section-shell footer-inner">
-          <div className="brand footer-brand">
-            <span className="brand-mark" aria-hidden="true">MA</span>
-            <span><strong>Makedon Academy</strong><small>Community School</small></span>
-          </div>
-          <p>Belonging. Growth. A strong start—together.</p>
-          <a href="#top">Back to top <ArrowDown className="up-arrow" size={15} /></a>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }

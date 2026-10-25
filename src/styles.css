@@ -1183,6 +1183,485 @@ footer a:hover {
   font-size: 13px;
 }
 
+.updates-archive-hero {
+  padding: 104px 0 96px;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(237, 188, 91, 0.16), transparent 28%),
+    var(--green-950);
+  color: white;
+}
+
+.archive-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  align-items: end;
+  gap: 90px;
+}
+
+.updates-archive-hero h1 {
+  max-width: 760px;
+  margin: 0;
+  font-size: clamp(4rem, 7vw, 7rem);
+  line-height: 0.96;
+}
+
+.archive-hero-grid > p {
+  margin: 0 0 8px;
+  color: #c8d7d2;
+  font-size: 16px;
+}
+
+.updates-archive-section {
+  padding: 110px 0 125px;
+  background: var(--cream);
+}
+
+.archive-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.62fr);
+  align-items: end;
+  gap: 70px;
+  margin-bottom: 58px;
+}
+
+.archive-heading h2 {
+  margin: 0;
+  color: var(--green-900);
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  line-height: 1.02;
+}
+
+.archive-heading > p {
+  margin: 0 0 7px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.issue-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.issue-card {
+  display: flex;
+  min-width: 0;
+  min-height: 350px;
+  flex-direction: column;
+  padding: 34px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--coral);
+  border-radius: 12px;
+  background: var(--paper);
+  box-shadow: 0 14px 42px rgba(18, 58, 52, 0.06);
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.issue-card:nth-child(3n + 2) {
+  border-top-color: var(--yellow);
+}
+
+.issue-card:nth-child(3n) {
+  border-top-color: var(--green-700);
+}
+
+.issue-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 54px rgba(18, 58, 52, 0.11);
+}
+
+.issue-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: var(--coral-dark);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.issue-card-meta time {
+  color: var(--muted);
+}
+
+.issue-card h3 {
+  margin: 48px 0 18px;
+  color: var(--green-900);
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.issue-card > p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.issue-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 24px;
+  color: var(--green-800);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.weekly-issue-hero {
+  padding: 48px 0 72px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 84% 20%, rgba(237, 118, 95, 0.14), transparent 29%),
+    var(--green-900);
+  color: white;
+}
+
+.archive-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 58px;
+  color: #c8d7d2;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.archive-back-link:hover {
+  color: var(--yellow);
+}
+
+.weekly-issue-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  align-items: end;
+  gap: 80px;
+}
+
+.weekly-issue-hero h1 {
+  max-width: 850px;
+  margin: 0;
+  font-size: clamp(3.8rem, 6vw, 6.5rem);
+  line-height: 0.98;
+}
+
+.weekly-issue-intro {
+  max-width: 790px;
+  margin: 30px 0 0;
+  color: #d4e0dc;
+  font-family: Georgia, serif;
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.weekly-date-card {
+  display: flex;
+  min-height: 230px;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px;
+  border-radius: 12px;
+  background: var(--yellow);
+  box-shadow: 13px 13px 0 rgba(223, 234, 229, 0.18);
+  color: var(--green-950);
+}
+
+.weekly-date-card span,
+.weekly-date-card small {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.weekly-date-card time {
+  font-family: var(--serif);
+  font-size: 43px;
+  line-height: 1;
+}
+
+.weekly-date-card small {
+  line-height: 1.5;
+}
+
+.weekly-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 58px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.weekly-highlights li {
+  padding: 10px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.055);
+  color: #d9e5e1;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.weekly-issue-content {
+  padding: 110px 0 100px;
+  background: var(--paper);
+}
+
+.weekly-content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(270px, 330px);
+  align-items: start;
+  gap: 90px;
+}
+
+.weekly-story {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  gap: 24px;
+  padding: 0 0 52px;
+  margin-bottom: 52px;
+  border-bottom: 1px solid var(--line);
+}
+
+.weekly-story-number {
+  padding-top: 5px;
+  color: var(--coral-dark);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.weekly-story .section-kicker {
+  margin-bottom: 12px;
+}
+
+.weekly-story h2 {
+  margin: 0 0 22px;
+  color: var(--green-900);
+  font-size: clamp(2.25rem, 3.5vw, 3.65rem);
+  line-height: 1.05;
+}
+
+.weekly-story p:not(.section-kicker) {
+  color: #43514d;
+  font-family: Georgia, serif;
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+.weekly-story ul {
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.weekly-story li {
+  position: relative;
+  padding: 12px 0 12px 24px;
+  border-top: 1px solid var(--line);
+  color: #43514d;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.weekly-story li::before {
+  position: absolute;
+  top: 19px;
+  left: 2px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--yellow);
+  content: '';
+}
+
+.weekly-signoff {
+  display: grid;
+  grid-template-columns: 62px minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+  padding: 26px;
+  border-radius: 12px;
+  background: var(--green-50);
+}
+
+.weekly-signoff-mark {
+  display: grid;
+  width: 62px;
+  height: 62px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--green-900);
+  color: var(--yellow);
+  font-family: var(--serif);
+  font-size: 20px;
+}
+
+.weekly-signoff p {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-family: Georgia, serif;
+  font-size: 14px;
+}
+
+.weekly-signoff strong,
+.weekly-signoff small {
+  display: block;
+}
+
+.weekly-signoff strong {
+  color: var(--green-900);
+}
+
+.weekly-signoff small {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.weekly-sidebar {
+  position: sticky;
+  top: 104px;
+}
+
+.weekly-dates-card {
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--cream);
+}
+
+.weekly-dates-card > svg {
+  margin-bottom: 25px;
+  color: var(--coral-dark);
+}
+
+.weekly-dates-card .section-kicker {
+  margin-bottom: 9px;
+}
+
+.weekly-dates-card h2 {
+  margin-bottom: 25px;
+  color: var(--green-900);
+  font-size: 31px;
+  line-height: 1.08;
+}
+
+.weekly-dates-card ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.weekly-dates-card li {
+  padding: 16px 0;
+  border-top: 1px solid #ccd4ce;
+}
+
+.weekly-dates-card li strong,
+.weekly-dates-card li span {
+  display: block;
+}
+
+.weekly-dates-card li strong {
+  color: var(--green-800);
+  font-size: 11px;
+}
+
+.weekly-dates-card li span {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.weekly-response-note,
+.weekly-access-note {
+  display: flex;
+  gap: 13px;
+  margin-top: 16px;
+  padding: 19px;
+  border-radius: 10px;
+}
+
+.weekly-response-note {
+  background: var(--green-900);
+  color: var(--yellow);
+}
+
+.weekly-response-note strong {
+  color: white;
+  font-size: 12px;
+}
+
+.weekly-response-note p,
+.weekly-access-note p {
+  margin: 5px 0 0;
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.weekly-response-note p {
+  color: #bfd0cb;
+}
+
+.weekly-access-note {
+  align-items: flex-start;
+  border: 1px solid var(--line);
+  color: var(--green-700);
+}
+
+.weekly-access-note p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.issue-pagination {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 100px;
+}
+
+.issue-pagination > span {
+  min-width: 1px;
+}
+
+.issue-pagination a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 180px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  color: var(--green-800);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.issue-pagination a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.issue-pagination small {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .comments-section {
   padding: 120px 0 130px;
   background: var(--green-50);
@@ -2183,6 +2662,157 @@ footer a {
 
   .moderation-footer button {
     justify-content: center;
+  }
+}
+
+@media (max-width: 1000px) {
+  .weekly-issue-hero-grid {
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: 48px;
+  }
+
+  .weekly-content-grid {
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 55px;
+  }
+}
+
+@media (max-width: 780px) {
+  .updates-archive-hero,
+  .updates-archive-section,
+  .weekly-issue-content {
+    padding: 78px 0;
+  }
+
+  .archive-hero-grid,
+  .archive-heading,
+  .weekly-issue-hero-grid,
+  .weekly-content-grid {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .updates-archive-hero h1,
+  .weekly-issue-hero h1 {
+    font-size: clamp(3.3rem, 12vw, 5.2rem);
+  }
+
+  .issue-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .issue-card {
+    min-height: 315px;
+  }
+
+  .weekly-date-card {
+    width: min(270px, 100%);
+    min-height: 190px;
+  }
+
+  .weekly-highlights {
+    margin-top: 42px;
+  }
+
+  .weekly-sidebar {
+    position: static;
+  }
+
+  .weekly-dates-card {
+    padding: 30px;
+  }
+
+  .issue-pagination {
+    padding-bottom: 78px;
+  }
+}
+
+@media (max-width: 520px) {
+  .updates-archive-hero h1,
+  .weekly-issue-hero h1 {
+    font-size: 3.25rem;
+  }
+
+  .archive-heading {
+    margin-bottom: 38px;
+  }
+
+  .archive-heading h2 {
+    font-size: 2.8rem;
+  }
+
+  .issue-card {
+    min-height: 0;
+    padding: 26px 22px;
+  }
+
+  .issue-card h3 {
+    margin-top: 34px;
+    font-size: 28px;
+  }
+
+  .weekly-issue-hero {
+    padding: 38px 0 58px;
+  }
+
+  .archive-back-link {
+    margin-bottom: 42px;
+  }
+
+  .weekly-issue-intro {
+    font-size: 16px;
+  }
+
+  .weekly-highlights {
+    flex-direction: column;
+  }
+
+  .weekly-highlights li {
+    width: 100%;
+    border-radius: 7px;
+  }
+
+  .weekly-story {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 42px;
+    padding-bottom: 42px;
+  }
+
+  .weekly-story h2 {
+    font-size: 2.55rem;
+  }
+
+  .weekly-story p:not(.section-kicker) {
+    font-size: 16px;
+  }
+
+  .weekly-signoff {
+    grid-template-columns: 52px minmax(0, 1fr);
+    padding: 22px 18px;
+  }
+
+  .weekly-signoff-mark {
+    width: 52px;
+    height: 52px;
+  }
+
+  .issue-pagination {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .issue-pagination > span {
+    display: none;
+  }
+
+  .issue-pagination a {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .issue-pagination a:last-child {
+    justify-content: space-between;
   }
 }
 
